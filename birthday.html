@@ -1,0 +1,878 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09090b">
+  <meta name="description" content="A birthday love letter for Marten, sent across every mile.">
+  <title>For Marten, my love</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: "Segoe UI", "Noto Sans", sans-serif;
+      background: #09090b;
+      color: #f5f2f2;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      --rose: #ed4558;
+      --cream: #f5f2f2;
+      --muted: #aaa2a4;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-width: 320px;
+      min-height: 100svh;
+      margin: 0;
+      overflow-x: hidden;
+      background:
+        radial-gradient(ellipse at 23% 46%, #351419 0, #1a1012 31%, #09090b 72%);
+    }
+
+    button, a { font: inherit; }
+
+    .sky {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .page {
+      position: relative;
+      isolation: isolate;
+      width: min(100%, 1180px);
+      min-height: 100svh;
+      margin-inline: auto;
+      padding: clamp(24px, 5vh, 54px) clamp(22px, 6vw, 84px);
+      display: grid;
+      align-content: safe center;
+    }
+
+    .page::before {
+      position: absolute;
+      z-index: -1;
+      top: 50%;
+      left: 21%;
+      width: min(48vw, 600px);
+      aspect-ratio: 1;
+      border: 1px solid #ffffff0c;
+      border-radius: 50%;
+      content: "";
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .topline {
+      position: absolute;
+      top: clamp(22px, 4vh, 38px);
+      left: clamp(22px, 6vw, 84px);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #bdb5b7;
+      font-size: .62rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+
+    .signal {
+      width: 7px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: #ed4558;
+      box-shadow: 0 0 12px #ff5265;
+      animation: signal 2.4s ease-in-out infinite;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, .9fr);
+      align-items: center;
+      gap: clamp(42px, 8vw, 110px);
+      padding-block: 36px;
+    }
+
+    .intro {
+      max-width: 540px;
+      animation: arrive .9s ease-out both;
+    }
+
+    .eyebrow {
+      margin: 0 0 22px;
+      color: var(--rose);
+      font-size: .68rem;
+      letter-spacing: .29em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--cream);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(3rem, 5.2vw, 4.4rem);
+      font-weight: 400;
+      letter-spacing: -.055em;
+      line-height: .96;
+      text-wrap: balance;
+      white-space: nowrap;
+    }
+
+    h1 span {
+      display: block;
+      margin-top: .13em;
+      color: #ed4558;
+      font-style: italic;
+      letter-spacing: -.035em;
+    }
+
+    .intro-copy {
+      max-width: 410px;
+      margin: 24px 0 0;
+      color: #c9c1c3;
+      font-size: clamp(.98rem, 1.4vw, 1.08rem);
+      line-height: 1.8;
+    }
+
+    .sky-map {
+      position: relative;
+      width: min(100%, 380px);
+      aspect-ratio: 1.58;
+      margin-top: 22px;
+      overflow: hidden;
+      border: 1px solid #ffffff18;
+      border-radius: 22px;
+      background:
+        radial-gradient(ellipse at 28% 50%, #e342551a, transparent 37%),
+        linear-gradient(135deg, #211719e8, #111113ed);
+      box-shadow: 0 22px 80px #00000066, inset 0 0 50px #ed45580a;
+    }
+
+    .sky-map::before,
+    .sky-map::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 82%;
+      height: 42%;
+      border: 1px solid #ffffff1c;
+      border-radius: 50%;
+      content: "";
+      transform: translate(-50%, -50%) rotate(-12deg);
+    }
+
+    .sky-map::after {
+      width: 63%;
+      height: 80%;
+      border-color: #ed45581c;
+      transform: translate(-50%, -50%) rotate(54deg);
+    }
+
+    .place {
+      position: absolute;
+      z-index: 1;
+      top: 50%;
+      display: grid;
+      justify-items: center;
+      gap: 8px;
+      color: #e0dadd;
+      font-size: .56rem;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      transform: translateY(-50%);
+    }
+
+    .place-here { left: 9%; }
+    .place-there { right: 9%; }
+
+    .place-light {
+      width: 10px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: #fffafa;
+      box-shadow: 0 0 9px 3px #ed4558, 0 0 28px 8px #ed455860;
+    }
+
+    .place-there .place-light {
+      background: #ed4558;
+      box-shadow: 0 0 9px 3px #ed4558, 0 0 28px 8px #ed455860;
+    }
+
+    .route {
+      position: absolute;
+      top: 50%;
+      left: 19%;
+      width: 62%;
+      height: 1px;
+      background: linear-gradient(90deg, #ed455800, #ed4558c0 50%, #ed455800);
+      transform: rotate(-12deg);
+    }
+
+    .traveler {
+      position: absolute;
+      top: 50%;
+      left: 19%;
+      width: 5px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: #fffafa;
+      box-shadow: 0 0 10px 3px #ed4558, 0 0 24px 6px #ed455860;
+      animation: travel 5s ease-in-out infinite alternate;
+    }
+
+    .sky-caption {
+      position: absolute;
+      right: 15px;
+      bottom: 13px;
+      color: #999194;
+      font-size: .53rem;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .surprise {
+      position: relative;
+      padding: clamp(22px, 3.2vw, 38px);
+      overflow: hidden;
+      border: 1px solid #ffffff24;
+      border-radius: 24px;
+      background:
+        radial-gradient(ellipse at 50% 0, #ed455818, transparent 52%),
+        linear-gradient(145deg, #1d1719ed, #111113f5);
+      box-shadow: 0 30px 90px #00000080, inset 0 1px #ffffff0b;
+      animation: arrive .9s .15s ease-out both;
+    }
+
+    .surprise::before {
+      position: absolute;
+      top: -90px;
+      right: -80px;
+      width: 190px;
+      aspect-ratio: 1;
+      border: 1px solid #ed455812;
+      border-radius: 50%;
+      box-shadow: 0 0 0 20px #ed455806, 0 0 0 44px #ed455804;
+      content: "";
+      pointer-events: none;
+    }
+
+    .card-label {
+      margin: 0;
+      color: #d9959d;
+      font-size: .59rem;
+      letter-spacing: .23em;
+      text-transform: uppercase;
+    }
+
+    .cake-moment {
+      display: grid;
+      justify-items: center;
+      margin: 18px 0 2px;
+    }
+
+    .cake-button {
+      position: relative;
+      width: 124px;
+      height: 110px;
+      display: grid;
+      place-items: center;
+      border: 0;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at 50% 70%, #ed45581c, transparent 70%);
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .cake-button::before {
+      position: absolute;
+      inset: 12px;
+      border: 1px solid #ed455817;
+      border-radius: 50%;
+      box-shadow: 0 0 30px #ed45581c, inset 0 0 25px #ed45580c;
+      content: "";
+      transition: box-shadow .3s ease;
+    }
+
+    .cake-button:hover::before,
+    .cake-button:focus-visible::before {
+      box-shadow: 0 0 38px #ed455840, inset 0 0 30px #ed45581a;
+    }
+
+    .cake-button:focus-visible {
+      outline: 1px solid #ff778480;
+      outline-offset: 3px;
+    }
+
+    .cake-art {
+      position: relative;
+      z-index: 1;
+      width: 82px;
+      overflow: visible;
+      filter: drop-shadow(0 5px 10px #ed455842);
+      transition: transform .3s ease;
+    }
+
+    .cake-button:hover .cake-art { transform: translateY(-3px); }
+
+    .flame {
+      transform-box: fill-box;
+      transform-origin: center bottom;
+      animation: candle-flicker .8s ease-in-out infinite alternate;
+      transition: opacity .25s, transform .25s;
+    }
+
+    .wished .flame {
+      opacity: 0;
+      transform: scale(.2) translateY(8px);
+      animation: none;
+    }
+
+    .cake-caption {
+      margin: 0;
+      color: #ddd5d6;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: .79rem;
+      font-style: italic;
+      letter-spacing: .045em;
+    }
+
+    .envelope {
+      position: relative;
+      width: min(100%, 330px);
+      height: 175px;
+      margin: 20px auto 24px;
+      perspective: 700px;
+      filter: drop-shadow(0 18px 22px #00000080);
+    }
+
+    .envelope-back {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      border: 1px solid #ffffff1f;
+      border-radius: 12px;
+      background: linear-gradient(145deg, #761e2b, #481820 65%, #281316);
+    }
+
+    .letter {
+      position: absolute;
+      z-index: 1;
+      top: 13px;
+      left: 8%;
+      width: 84%;
+      min-height: 145px;
+      padding: 18px 18px 14px;
+      border: 1px solid #ffffff;
+      border-radius: 8px;
+      background: linear-gradient(155deg, #f7f4f3, #e8e2e2);
+      color: #241a1c;
+      opacity: 0;
+      transform: translateY(36px) scale(.96);
+      transition: opacity .55s .15s, transform .7s cubic-bezier(.2,.8,.2,1) .1s;
+    }
+
+    .letter-kicker {
+      margin: 0 0 9px;
+      color: #a53643;
+      font-size: .53rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+
+    .letter h2 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.35rem, 3vw, 1.8rem);
+      font-weight: 400;
+    }
+
+    .letter p {
+      margin: 7px 0 0;
+      color: #5d4c4f;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: .86rem;
+      font-style: italic;
+    }
+
+    .envelope-front {
+      position: absolute;
+      z-index: 2;
+      inset: 0;
+      overflow: hidden;
+      border-radius: 12px;
+      background: linear-gradient(155deg, #a12c3c, #681c29 55%, #39151c);
+      clip-path: polygon(0 0, 50% 61%, 100% 0, 100% 100%, 0 100%);
+      pointer-events: none;
+    }
+
+    .envelope-front::before,
+    .envelope-front::after {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(35deg, #39151c, #7d202d);
+      clip-path: polygon(0 0, 50% 62%, 0 100%);
+      content: "";
+    }
+
+    .envelope-front::after {
+      background: linear-gradient(325deg, #45171f, #8b2634);
+      clip-path: polygon(100% 0, 50% 62%, 100% 100%);
+    }
+
+    .envelope-flap {
+      position: absolute;
+      z-index: 3;
+      inset: 0 0 auto;
+      height: 70%;
+      border-radius: 12px 12px 0 0;
+      background: linear-gradient(160deg, #b33a49, #79232f);
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      transform-origin: top center;
+      transition: transform .72s cubic-bezier(.2,.7,.2,1), opacity .3s .25s;
+      pointer-events: none;
+    }
+
+    .seal {
+      position: absolute;
+      z-index: 4;
+      top: 53%;
+      left: 50%;
+      width: 43px;
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border: 1px solid #ffe9e99c;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%, #ff6675, #9f2031 72%);
+      color: #fffafa;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.1rem;
+      box-shadow: 0 0 24px #ed455850, inset 0 1px #fff7;
+      transform: translate(-50%, -50%);
+      transition: opacity .2s, transform .3s;
+    }
+
+    .open .letter {
+      z-index: 5;
+      opacity: 1;
+      transform: translateY(-28px) scale(1);
+    }
+
+    .open .envelope-flap {
+      z-index: 0;
+      opacity: .35;
+      transform: rotateX(180deg);
+    }
+
+    .open .seal {
+      opacity: 0;
+      transform: translate(-50%, -80%) scale(.6);
+    }
+
+    .open-button,
+    .continue-link {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      border: 1px solid #f16a7788;
+      border-radius: 999px;
+      background: linear-gradient(110deg, #c72f40, #811e2d);
+      color: #fffafa;
+      font-size: .76rem;
+      font-weight: 600;
+      letter-spacing: .075em;
+      text-decoration: none;
+      box-shadow: 0 10px 30px #ed455833, inset 0 1px #fff4;
+      cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+
+    .open-button {
+      width: 100%;
+      padding: 0 22px;
+    }
+
+    .open-button:hover,
+    .continue-link:hover {
+      background: linear-gradient(110deg, #ed4558, #a82333);
+      box-shadow: 0 14px 36px #ed455845, inset 0 1px #fff6;
+      transform: translateY(-2px);
+    }
+
+    .open-button:focus-visible,
+    .continue-link:focus-visible {
+      outline: 2px solid #ff9aa4;
+      outline-offset: 4px;
+    }
+
+    .arrow { font-size: 1.05rem; }
+
+    .message {
+      display: grid;
+      grid-template-rows: 0fr;
+      opacity: 0;
+      transition: grid-template-rows .6s .15s, opacity .5s .2s;
+    }
+
+    .message[aria-hidden="true"] { visibility: hidden; }
+
+    .message-inner { overflow: hidden; }
+
+    .message-copy {
+      margin: 0 0 20px;
+      color: #d7cdcf;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: .98rem;
+      line-height: 1.8;
+    }
+
+    .signature {
+      display: block;
+      margin-top: 15px;
+      color: #f06a78;
+      font-style: italic;
+    }
+
+    .continue-link {
+      width: 100%;
+      margin: 0 0 2px;
+      padding: 0 17px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition: opacity .4s .35s, transform .4s .35s, background .2s, box-shadow .2s;
+    }
+
+    .revealed .message {
+      grid-template-rows: 1fr;
+      opacity: 1;
+    }
+
+    .revealed .continue-link {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .footer-note {
+      position: absolute;
+      right: clamp(22px, 6vw, 84px);
+      bottom: clamp(20px, 3vh, 32px);
+      left: clamp(22px, 6vw, 84px);
+      margin: 0;
+      color: #999194;
+      font-size: .57rem;
+      letter-spacing: .18em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .spark {
+      position: fixed;
+      z-index: 10;
+      width: 4px;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: #fffafa;
+      box-shadow: 0 0 12px 4px #ed4558, 0 0 25px 8px #ed455880;
+      pointer-events: none;
+      animation: burst 1.1s ease-out forwards;
+    }
+
+    @keyframes arrive {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes signal {
+      50% { opacity: .55; box-shadow: 0 0 5px 1px #ff5265; }
+    }
+
+    @keyframes travel {
+      to { transform: translateX(250%); }
+    }
+
+    @keyframes candle-flicker {
+      from { transform: rotate(-5deg) scale(.96); }
+      to { transform: rotate(5deg) scale(1.06); }
+    }
+
+    @keyframes burst {
+      to {
+        opacity: 0;
+        transform: translate(var(--dx), var(--dy)) scale(.15);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        min-height: 100svh;
+        padding: 78px 22px 64px;
+        align-content: start;
+      }
+
+      .topline { left: 22px; }
+
+      .layout {
+        grid-template-columns: minmax(0, 1fr);
+        justify-items: center;
+        gap: 30px;
+        padding-block: 12px 28px;
+      }
+
+      .intro {
+        width: min(100%, 520px);
+        text-align: center;
+      }
+
+      .eyebrow { margin-bottom: 16px; }
+
+      h1 { font-size: clamp(3rem, 11vw, 4.8rem); }
+
+      .intro-copy {
+        max-width: 420px;
+        margin: 16px auto 0;
+        font-size: .94rem;
+      }
+
+      .sky-map { width: min(100%, 370px); margin: 20px auto 0; }
+
+      .surprise {
+        width: min(100%, 460px);
+        padding: 22px;
+      }
+
+      .envelope { margin-block: 26px 22px; }
+
+      .footer-note {
+        right: 16px;
+        bottom: 17px;
+        left: 16px;
+        font-size: .49rem;
+        line-height: 1.6;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .page { padding-inline: 16px; }
+      .surprise { padding: 18px; }
+      .sky-map { aspect-ratio: 1.45; }
+      .message-copy { font-size: .91rem; }
+      h1 { font-size: 2.35rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <canvas class="sky" id="sky" aria-hidden="true"></canvas>
+  <main class="page">
+    <div class="topline"><span class="signal" aria-hidden="true"></span> A tiny birthday thing for you</div>
+    <div class="layout">
+      <section class="intro" aria-labelledby="title">
+        <p class="eyebrow">For my favorite human (and handsome, lovely man)</p>
+        <h1 id="title">Happy birthday,<span>my prince.</span></h1>
+        <p class="intro-copy">
+          Marten, my love, I wish I could steal you away for birthday hugs, kisses,
+          and way too much cake. For now, I’m sending all my love across the miles
+          to my favorite person ever, my cutie pie.
+        </p>
+        <div class="sky-map" aria-label="Two little lights connected across the stars">
+          <div class="place place-here"><span class="place-light" aria-hidden="true"></span><span>Where I am</span></div>
+          <span class="route" aria-hidden="true"></span>
+          <span class="traveler" aria-hidden="true"></span>
+          <div class="place place-there"><span class="place-light" aria-hidden="true"></span><span>Your universe</span></div>
+          <span class="sky-caption">Still under the same sky</span>
+        </div>
+      </section>
+
+      <section class="surprise" id="surprise" aria-labelledby="card-title">
+        <p class="card-label" id="card-title">A birthday love note · just for you</p>
+        <div class="cake-moment">
+          <button class="cake-button" id="cake-button" type="button" aria-pressed="false" aria-label="Blow out your birthday candle and make a wish">
+            <svg class="cake-art" viewBox="0 0 100 110" role="img" aria-label="A little birthday cake with one glowing candle">
+              <defs>
+                <linearGradient id="cake-icing" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#fffafa"/>
+                  <stop offset="1" stop-color="#d6bfc1"/>
+                </linearGradient>
+                <linearGradient id="cake-base" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#a52b3a"/>
+                  <stop offset="1" stop-color="#581923"/>
+                </linearGradient>
+                <radialGradient id="flame-light">
+                  <stop offset="0" stop-color="#ffc783" stop-opacity=".5"/>
+                  <stop offset="1" stop-color="#ffb570" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
+              <circle cx="50" cy="27" r="20" fill="url(#flame-light)"/>
+              <g class="flame">
+                <path d="M50 8C61 20 57 29 50 31c-8-3-10-12 0-23Z" fill="#ffb36b"/>
+                <path d="M50 17c5 7 3 10 0 12-4-2-4-6 0-12Z" fill="#fff0bd"/>
+              </g>
+              <rect x="47.5" y="31" width="5" height="20" rx="2.5" fill="#f3d9a8"/>
+              <path d="M47.5 37h5v3h-5z" fill="#c52d3e"/>
+              <path d="M20 61c0-7 6-12 14-12h32c8 0 14 5 14 12v23H20V61Z" fill="url(#cake-icing)"/>
+              <path d="M20 68c5 0 5 6 10 6s5-6 10-6 5 6 10 6 5-6 10-6 5 6 10 6 5-6 10-6v8c-5 0-5 6-10 6s-5-6-10-6-5 6-10 6-5-6-10-6-5 6-10 6-5-6-10-6v-8Z" fill="#fffafa"/>
+              <path d="M24 81c0-4 4-7 9-7h34c5 0 9 3 9 7v17H24V81Z" fill="url(#cake-base)"/>
+              <path d="M17 96c0-4 4-7 9-7h48c5 0 9 3 9 7v5H17v-5Z" fill="#c52d3e"/>
+              <circle cx="35" cy="61" r="2" fill="#ffe1b5"/>
+              <circle cx="50" cy="57" r="2" fill="#ffe1b5"/>
+              <circle cx="65" cy="62" r="2" fill="#ffe1b5"/>
+              <path d="M30 90v-8m20 8v-8m20 8v-8" stroke="#f3cfb6" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </button>
+          <p class="cake-caption" id="cake-caption">Make a wish, my love</p>
+        </div>
+        <div class="envelope" id="envelope" aria-hidden="true">
+          <div class="envelope-back"></div>
+          <article class="letter">
+            <p class="letter-kicker">Sealed with a kiss, across the miles</p>
+            <h2>My prince,</h2>
+            <p>A little piece of my heart, just for you.</p>
+          </article>
+          <div class="envelope-front"></div>
+          <div class="envelope-flap"></div>
+          <div class="seal">M</div>
+        </div>
+        <button class="open-button" id="open-button" type="button" aria-expanded="false" aria-controls="birthday-message">
+          Open your birthday message <span class="arrow" aria-hidden="true">↗</span>
+        </button>
+        <div class="message" id="birthday-message" aria-live="polite" aria-hidden="true">
+          <div class="message-inner">
+            <p class="message-copy">
+              Happy birthday, my love!! I really wish I was there with you so I
+              could squeeze you forever, kiss your cute face, and eat birthday cake
+              with you, my cutie pie. Long distance is so rude, but no amount of
+              miles could make me love you any less. You make my days happier just
+              by being you, and I feel ridiculously lucky that I get to call you
+              mine. I hope today brings you all the cuddles, cake, and happiness
+              you deserve.
+              <span class="signature">I love you so, so much, my pookie wookie. Happy birthday, my prince! ❤️<br>All my kisses,<br>Sara</span>
+            </p>
+            <a class="continue-link" href="./index.html">
+              And now, one more little surprise <span class="arrow" aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+    <p class="footer-note">Made with love · sent across every mile · saved just for you</p>
+  </main>
+
+  <script>
+    const sky = document.querySelector("#sky");
+    const skyContext = sky.getContext("2d");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const stars = Array.from({ length: 150 }, () => ({
+      x: Math.random(),
+      y: Math.random(),
+      radius: 0.35 + Math.random() * 1.2,
+      phase: Math.random() * Math.PI * 2,
+      speed: 0.5 + Math.random() * 1.8,
+      tint: Math.random()
+    }));
+    let skyWidth = 0;
+    let skyHeight = 0;
+    let skyScale = 1;
+    let skyTime = 0;
+    let lastFrame = 0;
+
+    function resizeSky() {
+      skyScale = Math.min(window.devicePixelRatio || 1, 2);
+      skyWidth = window.innerWidth;
+      skyHeight = window.innerHeight;
+      sky.width = Math.round(skyWidth * skyScale);
+      sky.height = Math.round(skyHeight * skyScale);
+      skyContext.setTransform(skyScale, 0, 0, skyScale, 0, 0);
+    }
+
+    function drawSky(time) {
+      skyContext.clearRect(0, 0, skyWidth, skyHeight);
+      for (const star of stars) {
+        const shimmer = reducedMotion.matches
+          ? 0.48
+          : 0.2 + (Math.sin(time * star.speed + star.phase) + 1) * 0.3;
+        skyContext.beginPath();
+        skyContext.fillStyle = star.tint > 0.87
+          ? `rgba(255,245,245,${shimmer})`
+          : `rgba(255,91,105,${shimmer})`;
+        skyContext.arc(star.x * skyWidth, star.y * skyHeight, star.radius, 0, Math.PI * 2);
+        skyContext.fill();
+      }
+    }
+
+    function animateSky(now) {
+      if (!lastFrame) lastFrame = now;
+      skyTime += Math.min((now - lastFrame) / 1000, 0.05);
+      lastFrame = now;
+      drawSky(skyTime);
+      if (!reducedMotion.matches) window.requestAnimationFrame(animateSky);
+    }
+
+    function releaseSparks() {
+      const bounds = document.querySelector("#surprise").getBoundingClientRect();
+      const originX = bounds.left + bounds.width / 2;
+      const originY = bounds.top + 180;
+      for (let i = 0; i < 38; i += 1) {
+        const spark = document.createElement("span");
+        const angle = Math.random() * Math.PI * 2;
+        const distance = 48 + Math.random() * 170;
+        spark.className = "spark";
+        spark.style.left = `${originX}px`;
+        spark.style.top = `${originY}px`;
+        spark.style.setProperty("--dx", `${Math.cos(angle) * distance}px`);
+        spark.style.setProperty("--dy", `${Math.sin(angle) * distance}px`);
+        document.body.append(spark);
+        spark.addEventListener("animationend", () => spark.remove(), { once: true });
+      }
+    }
+
+    document.querySelector("#open-button").addEventListener("click", event => {
+      const button = event.currentTarget;
+      const surprise = document.querySelector("#surprise");
+      const willOpen = button.getAttribute("aria-expanded") !== "true";
+      button.setAttribute("aria-expanded", String(willOpen));
+      surprise.classList.toggle("open", willOpen);
+      surprise.classList.toggle("revealed", willOpen);
+      document.querySelector("#birthday-message").setAttribute("aria-hidden", String(!willOpen));
+      button.innerHTML = willOpen
+        ? 'Close your birthday message <span class="arrow" aria-hidden="true">−</span>'
+        : 'Open your birthday message <span class="arrow" aria-hidden="true">↗</span>';
+      if (willOpen) releaseSparks();
+    });
+
+    document.querySelector("#cake-button").addEventListener("click", event => {
+      const button = event.currentTarget;
+      const isBlownOut = button.getAttribute("aria-pressed") !== "true";
+      button.setAttribute("aria-pressed", String(isBlownOut));
+      button.classList.toggle("wished", isBlownOut);
+      button.setAttribute(
+        "aria-label",
+        isBlownOut ? "Candle blown out. Relight it for another wish" : "Blow out your birthday candle and make a wish"
+      );
+      document.querySelector("#cake-caption").textContent = isBlownOut
+        ? "Wish sent, my love ✨"
+        : "Make a wish, my love";
+      if (isBlownOut) releaseSparks();
+    });
+
+    window.addEventListener("resize", resizeSky);
+    resizeSky();
+    drawSky(0);
+    if (!reducedMotion.matches) window.requestAnimationFrame(animateSky);
+  </script>
+</body>
+</html>
